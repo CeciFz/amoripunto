@@ -3,22 +3,21 @@ import CartWidget from "./CartWidget";
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
 function NavBar(){
-    const [nav, setNav] = useState(false);
+    const [nav, setNav] = useState(true);
 
     const handleNav = () => {
         setNav(!nav);
     }
 
     return (
-        <div className="flex justify-between items-center h-24 max-w-[1024px] mx-auto px-4 text-white">
-            <h1 className="w-full text-3xl font-bold text-[#00df9a]">Amoripunto.</h1>
+        <div className="flex justify-between items-center h-24 max-w-[1280px] mx-auto px-4 text-white">
+            <h1 className="text-3xl font-bold text-[#00df9a]"><a href="#">Amoripunto.</a></h1>
             <ul className="md:flex hidden">
-                <li className="p-4">Inicio</li>
-                <li className="p-4">Productos</li>
-                <li className="p-4">Sale</li>
-                <li className="p-4">Acerca de</li>
-                <li className="p-4">Contacto</li>
-                <li className="p-4"><CartWidget/></li>
+                <li className="p-4"><a href="#">Inicio</a></li>
+                <li className="p-4"><a href="#">Productos</a></li>
+                <li className="p-4"><a href="#">Sale</a></li>
+                <li className="p-4"><a href="#">Conocenos</a></li>
+                <li className="p-4"><a href="#"><CartWidget/></a></li>
             </ul>
             <div onClick={handleNav} className="block md:hidden">
                 { !nav ? <AiOutlineClose size={20}/> :  <AiOutlineMenu size={20}/> }
