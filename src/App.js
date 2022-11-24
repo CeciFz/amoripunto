@@ -1,11 +1,11 @@
 import React from 'react';
-//import ItemListContainer from './components/ItemListContainer';
+import Bandolera_roja from "./assets/images/Bandolera_roja.jpg";
 import Layout from './components/Layout';
 
 function App() {
   return (
     <Layout>
-      {/* <ItemListContainer /> */}
+        <img src={Bandolera_roja} alt="BandoleraHero" />
     </Layout>
     );
 }
