@@ -9,6 +9,7 @@ export const item = [
         category: "carteras",
         description: "Bandolera roja description",
         stock: 5,
+        precio: '$ 5000,00.-',
         img: Bandolera_roja,
     },
     {
@@ -17,6 +18,7 @@ export const item = [
         category: "carteras",
         description: "Carmelo rojo description",
         stock: 8,
+        precio: '$ 8000,00.-',
         img: Carmelo_rojo,
     },
     {
@@ -25,6 +27,7 @@ export const item = [
         category: "mochilas",
         description: "Juana croco negra description",
         stock: 3,
+        precio: '$ 3000,00.-',
         img: Juana_croco_negro,
     },
     {
@@ -33,6 +36,7 @@ export const item = [
         category: "carteras",
         description: "Bandolera roja description",
         stock: 5,
+        precio: '$ 5000,00.-',
         img: Bandolera_roja,
     },
     {
@@ -41,6 +45,7 @@ export const item = [
         category: "carteras",
         description: "Carmelo rojo description",
         stock: 8,
+        precio: '$ 8000,00.-',
         img: Carmelo_rojo,
     },
     {
@@ -49,6 +54,7 @@ export const item = [
         category: "mochilas",
         description: "Juana croco negra description",
         stock: 3,
+        precio: '$ 3000,00.-',
         img: Juana_croco_negro,
     },
 
