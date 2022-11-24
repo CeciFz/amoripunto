@@ -5,7 +5,7 @@ import Layout from './components/Layout';
 function App() {
   return (
     <Layout>
-        <img src={Bandolera_roja} alt="BandoleraHero" />
+        <img src={Bandolera_roja} alt="Portada" />
     </Layout>
     );
 }
