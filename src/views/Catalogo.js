@@ -5,11 +5,54 @@ import { useParams } from "react-router-dom";
 import { item } from "../mocks/item.mock";
 import { Link } from "react-router-dom";
 
+// import { doc, getDoc, getFirestore } from "firebase/firestore"; //PARA CONSULTAR UN SOLO PRODUCTO
+//import { collection, getDocs, getFirestore } from "firebase/firestore"; //PARA CONSULTAR TODOS LOS PRODUCTOS
+import { collection, getDocs, query, where, getFirestore } from "firebase/firestore"; //PARA CONSULTAR TODOS LOS PRODUCTOS CON FILTRO
 
 function Catalogo () {
     const [products, setProducts] =  useState([]);
     const { category } = useParams();
 
+    useEffect(() => { 
+        const db = getFirestore();
+
+        //PARA CONSULTAR UN SOLO PRODUCTO  
+        /*  const itemRef = doc(db, "items", "8ToMqxAVAopOTHZJbIcF");
+        getDoc(itemRef).then((response) => {
+            if(response.exists()){
+                console.log(response.data())
+                setProducts([{ id: "8ToMqxAVAopOTHZJbIcF", ...response.data() }]);
+            }
+        })*/
+
+        //PARA CONSULTAR TODOS LOS PRODUCTOS SIN FILTROS
+        /*const itemCollection = collection(db, "items");
+        getDocs(itemCollection).then( response => {
+            const products = response.docs.map( doc => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+
+            setProducts(products);
+        })*/
+
+        //PARA CONSULTAR TODOS LOS PRODUCTOS CON FILTRO
+        const itemCollection = collection(db, "items");
+        const q = query(itemCollection, where("category", "==", "carteras"));
+        getDocs(q).then( response => {
+            const products = response.docs.map( doc => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+
+            setProducts(products);
+        })
+
+
+    }, []);
+
+
+/*
     useEffect(() => {
         new Promise((resolve) =>
             setTimeout( () => {
@@ -17,7 +60,7 @@ function Catalogo () {
             }, 1000)
         ).then( (data) => setProducts(data));
     }, []);
-
+*/
 
     return (
         <Layout>
