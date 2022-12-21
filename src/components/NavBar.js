@@ -23,7 +23,7 @@ function NavBar(){
       }, [logoRef]);
 
     return (
-        <header className="md:fixed top-0 left-0 right-0">
+        <header className="sticky top-0 w-screen">
             <nav className="flex justify-between items-center h-24 max-w-[1280px] mx-auto px-4 text-white">
                 <Link to="/" className='max-sm:w-32 w-36'><img className='rounded-lg w-full' src={ logo } alt="Logo Amoripunto"/></Link>
                 {/* <h1 className="text-3xl font-bold text-[#00df9a]"><Link to="/">Amoripunto.</Link></h1> */}

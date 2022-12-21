@@ -11,6 +11,7 @@ import { collection, getDocs, query, where, getFirestore } from "firebase/firest
 
 function Catalogo () {
     const [products, setProducts] =  useState([]);
+    const [categories, setCategories] =  useState([]);
     const { category } = useParams();
 
     useEffect(() => { 
@@ -26,18 +27,38 @@ function Catalogo () {
         })*/
 
         //PARA CONSULTAR TODOS LOS PRODUCTOS SIN FILTROS
-        /*const itemCollection = collection(db, "items");
-        getDocs(itemCollection).then( response => {
-            const products = response.docs.map( doc => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
+        const itemCollection = collection(db, "items");
+       
+            
+        if (category !== 'all') {
 
-            setProducts(products);
-        })*/
+            const q = query(itemCollection, where("category", "==", category));
+            getDocs(q).then( response => {
+                const products = response.docs.map( doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+    
+                setProducts(products);
+            })
+        } else{
+            
+            getDocs(itemCollection).then( response => {
+                const products = response.docs.map( doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                setProducts(products);
+
+                const cat = new Set( products.map( product => product.category) );
+                setCategories( [...cat]);
+            })
+        }
+        
 
         //PARA CONSULTAR TODOS LOS PRODUCTOS CON FILTRO
-        const itemCollection = collection(db, "items");
+        /*  const itemCollection = collection(db, "items");
         const q = query(itemCollection, where("category", "==", "carteras"));
         getDocs(q).then( response => {
             const products = response.docs.map( doc => ({
@@ -46,10 +67,24 @@ function Catalogo () {
             }));
 
             setProducts(products);
+        })*/
+
+
+    }, [category]);
+
+ /*   const handleFilter = async ()  => {
+        //item.filter( products => products.category === category)
+
+        const q = query(itemCollection, where("category", "==", category));
+        getDocs(q).then( response => {
+            const products = response.docs.map( doc => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+
+            setProducts(products);
         })
-
-
-    }, []);
+    };*/
 
 
 /*
@@ -64,19 +99,19 @@ function Catalogo () {
 
     return (
         <Layout>
-        <h1 className="text-white" > Nuestros productos </h1>
-        <div className="flex justify-between items-center flex-wrap">
-            <h5 className="text-white text-lg p-4" > Filtrar por categoría: </h5>
-            <ul className="flex">
-                <li className="p-4 text-lg"><Link to="/Catalogo/carteras">Carteras</Link></li>
-                <li className="p-4 text-lg"><Link to="/Catalogo/mochilas">Mochilas</Link></li>
-                <li className="p-4 text-lg"><Link to="/Catalogo/cintos">Cintos</Link></li>
-                <li className="p-4 text-lg"><Link to="/Catalogo/all">Todas</Link></li>
-            </ul>
-        </div>
-        {products.length === 0 ? <p> Loading... </p> :
-        <ItemListContainer products = { category !== 'all' ? item.filter( products => products.category === category): products } /> }
-            {/* { categories.map( (product) => <Item product = {product} /> )} */}
+            <div className="w-4/5">
+                <h2 className="text-white" > Nuestros productos </h2>
+                <div className="flex justify-between items-center flex-wrap">
+                    <h5 className="text-white text-lg p-4" > Filtrar por categoría: </h5>
+                    <ul className="flex">
+                        {categories.map( cat => <li className="p-4 text-lg"><Link to={`/Catalogo/${cat}`}>{cat}</Link></li> )}
+                        <li className="p-4 text-lg"><Link to="/Catalogo/all">Todas</Link></li> 
+                    </ul>
+                </div>
+                {products.length === 0 ? <p> Loading... </p> :
+                <ItemListContainer products = { products } /> }
+                    {/* { categories.map( (product) => <Item product = {product} /> )} */}
+            </div>
         </Layout>
     );
 };
