@@ -1,24 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import useGetImage from "../hooks/useGetImage";
 
 const Item = ({ product }) => {
-  const [ imgItem, setImgItem ] = useState(null);
-  const storage = getStorage();
-  const imgRef = ref(storage , `images/${product.category}/${product.img[0]}`);
-
-  useEffect(() => {
-    getDownloadURL(imgRef)
-    .then( img => setImgItem(img) )
-    .catch( error => console.error(error) )
-  }, [product]);
-
+  const imgItems = useGetImage(product);
+    console.log(imgItems)
   
-
+  /*
+  const imgItems = 
+["https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Im8wbIep91pEsSjn_XpZrMRkpoK7Sc6U9ks2a4R_G0gYO0DLWMrPRHNbXVYbZ3f2oSw&usqp=CAU",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-aQUrqD1ntsg-H-FfwoRh250EhZxnKLMX2g&usqp=CAU"];*/
 
     return (
-      <Link to={`/ItemDetail/${product.id}`} >
-        <img src={imgItem} className="w-80 h-80 object-cover" alt="Product" />
+      // <Link to={`/ItemDetail/${product.id}`} >
+      <Link to={`../Detalle/${product.id}`} >
+        {/* <Carousel>
+          {imgItems.map( image =>
+            <div>
+              <img src={image} className="w-80 h-80 object-cover" alt="Product" /> 
+            </div>
+          )}
+        </Carousel> */}
+        <img src={imgItems[0]} className="w-80 h-80 object-cover" alt="Product" />
         <span className="text-base">{product.name}</span>
       </Link>
     );
