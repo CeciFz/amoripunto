@@ -6,7 +6,7 @@ function Layout ({ children }) {
         <div className='h-screen flex flex-col items-center'>
             <NavBar />
             <section className="grow text-white flex flex-col justify-center items-center text-3xl text-center" > {children} </section>
-            <footer><h1 className='tracking-widest text-sm font-bold text-white text-center pb-2 pt-2'> AMORIPUNTO ♥ </h1></footer>
+            <footer className='max-md:mt-8'><h1 className='tracking-widest text-sm font-bold text-white text-center pb-2 pt-2'> AMORIPUNTO ♥ </h1></footer>
         </div>
     );
 }

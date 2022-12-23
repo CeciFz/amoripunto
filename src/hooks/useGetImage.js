@@ -15,7 +15,6 @@ const useGetImage = ( product ) => {
 
     const fetchImages = async () => {
         //const imgRef = await img.map( image => ref(storage , `images/${category}/${image}`));
-        console.log("fetch")
         const listRef = ref(storage, `images/${category}`);
         const result = await listAll(listRef);
 

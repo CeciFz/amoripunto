@@ -60,7 +60,7 @@ const useGetProducts = () => {
 
 
 
-    }, [ref, id, category]);
+    }, []);
 
 
     return { products, categories };

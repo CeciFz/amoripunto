@@ -3,7 +3,10 @@ import { MdOutlineShoppingBag } from 'react-icons/md';
 
 function CartWidget() {
     return (
-        <MdOutlineShoppingBag size={30}/>
+        <MdOutlineShoppingBag size={30}>
+            <span></span>
+        </MdOutlineShoppingBag>
+
     );
 }; 
 
