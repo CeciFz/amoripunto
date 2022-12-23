@@ -7,18 +7,6 @@ import useGetProducts from "../hooks/useGetProduct";
 function Catalogo () {
     const { products, categories } = useGetProducts();
 
-        //PARA CONSULTAR TODOS LOS PRODUCTOS CON FILTRO
-        /*  const itemCollection = collection(db, "items");
-        const q = query(itemCollection, where("category", "==", "carteras"));
-        getDocs(q).then( response => {
-            const products = response.docs.map( doc => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-
-            setProducts(products);
-        })*/
-
     return (
         <Layout>
             <div className="w-4/5">
@@ -31,8 +19,7 @@ function Catalogo () {
                     </ul>
                 </div>
                 {products.length === 0 ? <p> Loading... </p> :
-                <ItemListContainer products = { products } /> }
-                    {/* { categories.map( (product) => <Item product = {product} /> )} */}
+                <ItemListContainer /> }
             </div>
         </Layout>
     );

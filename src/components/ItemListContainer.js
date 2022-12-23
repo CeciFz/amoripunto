@@ -1,12 +1,15 @@
 import React from "react";
 import ItemList from "./ItemList";
+import useGetProducts from "../hooks/useGetProduct";
 
-function ItemListContainer ({ products }) {   
+
+function ItemListContainer () {   
+    const { products } = useGetProducts();
+
 
     return (
         <div className = "w-90">
-        <ItemList products = { products } /> 
-        {/* <p className="text-white flex justify-center items-center text-3xl h-80 text-center"> {greeting} </p> */}
+            <ItemList products = { products } /> 
         </div>
     );
 }; 
